@@ -14,11 +14,11 @@
 
       stdenv.mkDerivation rec {
         name = "zitadel-${version}";
-        version = "v2.0.0-v2-alpha.33";
+        version = "v2.0.0-v2-alpha.39";
 
         src = pkgs.fetchurl {
                 url = "https://github.com/zitadel/zitadel/releases/download/${version}/zitadel_Linux_x86_64.tar.gz";
-                sha256 = "sha256-HpLu3cXQ+lUmnvrqjU/SEnGzouSO0ZSiwn1NIBNHSVM=";
+                sha256 = "sha256-v86DTU70bOKFJ8wL6KxxlWC7ymPlywNSoWKJo+h/zHY=";
         };
         sourceRoot = ".";
         
