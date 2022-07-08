@@ -22,8 +22,6 @@
         };
         sourceRoot = ".";
         
-        buildInputs = [ cockroachdb ];
-
         installPhase = ''
         install -m755 -D zitadel $out/bin/zitadel
         '';
