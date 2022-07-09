@@ -19,7 +19,7 @@ in {
     masterKey = mkOption {
       type = types.string;
       description = "Master key that Zitadel uses."
-    }
+    };
   };
 
   config = mkIf cfg.enable {
