@@ -32,27 +32,28 @@
               platforms = platforms.linux;
       };
     };
-    #overlays.default = self.overlay;
-    nixosModules.zitadel = 
-      { lib, options, config, ...  }: 
-        with lib;
-      {
-        cfg = config.services.zitadel;
-        nixpkgs.overlays = [ self.overlays.default ];
-        
-        options.services.zitadel = {
-          enable = mkOption {
-            type = types.bool;
-            default = false;
-            description = "Enables Zitadel.";
+    overlays.default = {
+      nixosModules.zitadel = 
+        { lib, options, config, ...  }: 
+          with lib;
+        {
+          cfg = config.services.zitadel;
+          nixpkgs.overlays = [ self.overlays.default ];
+          
+          options.services.zitadel = {
+            enable = mkOption {
+              type = types.bool;
+              default = false;
+              description = "Enables Zitadel.";
+            };
           };
-        };
-        
-        config.services.zitadel = mkIf cfg.enable {
-          systemd.services.zitadel = {
-            description = "Starts Zitadel.";
-            wantedBy = [ "multi-user.target" ];
-            serviceConfig.ExecStart = "${pkgs.zitadel}/bin/zitadel start-from-init";
+          
+          config.services.zitadel = mkIf cfg.enable {
+            systemd.services.zitadel = {
+              description = "Starts Zitadel.";
+              wantedBy = [ "multi-user.target" ];
+              serviceConfig.ExecStart = "${pkgs.zitadel}/bin/zitadel start-from-init";
+            };
           };
         };
       };
