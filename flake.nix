@@ -32,12 +32,13 @@
               platforms = platforms.linux;
       };
     };
-    overlays.default = self.overlay;
+    #overlays.default = self.overlay;
     nixosModules.zitadel = 
       { lib, options, config, ...  }: 
         with lib;
       {
         cfg = config.services.zitadel;
+        nixpkgs.overlays = [ self.overlays.default ];
         
         options.services.zitadel = {
           enable = mkOption {
