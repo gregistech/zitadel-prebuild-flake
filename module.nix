@@ -27,6 +27,7 @@ in {
     };
     extraConfig = mkOption {
       type = types.str;
+      default = "";
       description = "Configuration to append to the config file.";
     };
   };
