@@ -31,8 +31,10 @@ in {
       description = "Configuration to append to the config file.";
     };
   };
+  
 
   config = mkIf cfg.enable {
+    networking.firewall.allowedTCPPorts = [ 8080 ];
     systemd.services.zitadel = {
       description = "Starts Zitadel.";
       wantedBy = ["multi-user.target"];
