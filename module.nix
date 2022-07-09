@@ -8,9 +8,7 @@ with lib; let
   cfg = config.services.zitadel;
 in {
   options.services.zitadel = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
+    enable = mkEnableOption {
       description = "Enables Zitadel.";
     };
     package = mkOption {
