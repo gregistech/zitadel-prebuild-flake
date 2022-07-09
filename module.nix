@@ -19,7 +19,7 @@ in {
       description = "Zitadel package to use.";
     };
     masterKey = mkOption {
-      type = types.str;
+      type = types.string;
       description = "Master key that Zitadel uses."
     }
   };
