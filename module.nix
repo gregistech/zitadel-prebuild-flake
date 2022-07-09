@@ -28,7 +28,9 @@ in {
     systemd.services.zitadel = {
       description = "Starts Zitadel.";
       wantedBy = ["multi-user.target"];
-      serviceConfig.ExecStart = "${cfg.package}/bin/zitadel start-from-init";
+      serviceConfig.ExecStart = ''
+        ${cfg.package}/bin/zitadel start-from-init --masterkey "${cfg.masterKey}"
+      '';
     };
   };
 }
