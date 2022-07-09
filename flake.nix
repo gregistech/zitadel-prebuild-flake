@@ -37,6 +37,7 @@
       { lib, options, config, ...  }: 
         with lib;
       {
+        cfg = config.services.zitadel;
         nixpkgs.overlays = [ self.overlay ];
         
         options.services.zitadel = {
@@ -46,11 +47,13 @@
             description = "Enables Zitadel.";
           };
         };
-
-        systemd.services.zitadel = {
-          description = "Starts Zitadel.";
-          wantedBy = [ "multi-user.target" ];
-          serviceConfig.ExecStart = "${pkgs.zitadel}/bin/zitadel start-from-init";
+        
+        config.services.zitadel = mkIf cfg.enable {
+          systemd.services.zitadel = {
+            description = "Starts Zitadel.";
+            wantedBy = [ "multi-user.target" ];
+            serviceConfig.ExecStart = "${pkgs.zitadel}/bin/zitadel start-from-init";
+          };
         };
       };
   };
