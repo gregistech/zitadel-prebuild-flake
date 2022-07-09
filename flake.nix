@@ -38,7 +38,6 @@
         with lib;
       {
         cfg = config.services.zitadel;
-        nixpkgs.overlays = [ self.overlay ];
         
         options.services.zitadel = {
           enable = mkOption {
