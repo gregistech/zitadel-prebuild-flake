@@ -13,3 +13,5 @@
     nixosModules.default = import ./module.nix self;
   };
 }
+
+# github.com/thegergo02/cockroachdb-prebuild-flake

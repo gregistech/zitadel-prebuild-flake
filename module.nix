@@ -6,6 +6,11 @@ self: {
 }:
 with lib; let
   cfg = config.services.zitadel;
+  
+  configFile = pkgs.writeText "zitadel.yaml" ''
+    ${cfg.extraConfig}
+  '';
+
 in {
   options.services.zitadel = {
     enable = mkEnableOption {
@@ -19,6 +24,10 @@ in {
     masterKey = mkOption {
       type = types.str;
       description = "Master key that Zitadel uses.";
+    };
+    extraConfig = mkOption {
+      type = types.str;
+      description = "Configuration to append to the config file.";
     };
   };
 
