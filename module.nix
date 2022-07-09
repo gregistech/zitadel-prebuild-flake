@@ -18,7 +18,7 @@ in {
     };
     masterKey = mkOption {
       type = types.string;
-      description = "Master key that Zitadel uses."
+      description = "Master key that Zitadel uses.";
     };
   };
 
