@@ -32,7 +32,7 @@
               platforms = platforms.linux;
       };
     };
-    overlays.default = {
+    overlays.default = final: prev: {
       nixosModules.zitadel = 
         { lib, options, config, ...  }: 
           with lib;
