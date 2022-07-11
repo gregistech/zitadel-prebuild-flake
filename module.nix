@@ -30,7 +30,7 @@ in {
       default = "";
       description = "Configuration to append to the config file.";
     };
-    extraConfig = mkOption {
+    extraCommand = mkOption {
       type = types.str;
       default = "";
       description = "Anything to append to the start command.";
