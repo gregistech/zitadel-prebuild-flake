@@ -34,7 +34,7 @@ in {
   
 
   config = mkIf cfg.enable {
-    systemd.services.zitadel = {
+    systemd.services.zitadel = { # FIXME: does not wait for DB
       description = "Starts Zitadel.";
       wantedBy = ["multi-user.target"];
       serviceConfig.ExecStart = ''
