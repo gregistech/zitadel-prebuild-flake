@@ -21,10 +21,6 @@ in {
       default = self.packages.${pkgs.system}.default;
       description = "Zitadel package to use.";
     };
-    masterKey = mkOption {
-      type = types.str;
-      description = "Master key that Zitadel uses.";
-    };
     extraConfig = mkOption {
       type = types.str;
       default = "";
@@ -43,7 +39,7 @@ in {
       description = "Starts Zitadel.";
       wantedBy = ["multi-user.target"];
       serviceConfig.ExecStart = ''
-        ${cfg.package}/bin/zitadel start-from-init --masterkey "${cfg.masterKey}" --config ${configFile} --steps ${configFile} ${cfg.extraCommand}
+        ${cfg.package}/bin/zitadel start-from-init --config ${configFile} --steps ${configFile} ${cfg.extraCommand}
       '';
     };
   };
