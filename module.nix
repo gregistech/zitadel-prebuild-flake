@@ -30,6 +30,11 @@ in {
       default = "";
       description = "Configuration to append to the config file.";
     };
+    extraConfig = mkOption {
+      type = types.str;
+      default = "";
+      description = "Anything to append to the start command.";
+    };
   };
   
 
@@ -38,7 +43,7 @@ in {
       description = "Starts Zitadel.";
       wantedBy = ["multi-user.target"];
       serviceConfig.ExecStart = ''
-        ${cfg.package}/bin/zitadel start-from-init --masterkey "${cfg.masterKey}" --config ${configFile} --steps ${configFile}
+        ${cfg.package}/bin/zitadel start-from-init --masterkey "${cfg.masterKey}" --config ${configFile} --steps ${configFile} ${extraCommand}
       '';
     };
   };
