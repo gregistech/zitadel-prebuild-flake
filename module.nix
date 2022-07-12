@@ -26,11 +26,6 @@ in {
       default = "";
       description = "Configuration to append to the config file.";
     };
-    extraConfigFile = mkOption {
-      type = types.path;
-      default = cfg.extraConfig;
-      description = "Extra configuration file to add to the command.";
-    };
     extraCommand = mkOption {
       type = types.str;
       default = "";
