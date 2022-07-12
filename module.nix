@@ -39,7 +39,7 @@ in {
       description = "Starts Zitadel.";
       wantedBy = ["multi-user.target"];
       serviceConfig.ExecStart = ''
-        ${cfg.package}/bin/zitadel start-from-init --config ${configFile} --steps ${configFile} --config ${cfg.extraConfigFile} ${cfg.extraCommand}
+        ${cfg.package}/bin/zitadel start-from-init --config ${configFile} --steps ${configFile} ${cfg.extraCommand}
       '';
     };
   };
