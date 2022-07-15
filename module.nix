@@ -28,7 +28,7 @@ in {
     };
     extraConfigFile = mkOption {
       type = types.path;
-      default = ${cfg.configFile};
+      default = cfg.configFile;
       description = "Extra configuration file.";
     };
     extraCommand = mkOption {
