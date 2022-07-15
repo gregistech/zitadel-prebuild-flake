@@ -14,7 +14,7 @@ with lib; let
 in {
   options.services.zitadel = {
     enable = mkEnableOption {
-      description = "Enables Zitadel.";
+      description = "Enables ZITADEL.";
     };
     package = mkOption {
       type = types.package;
@@ -36,17 +36,20 @@ in {
       default = "";
       description = "Anything to append to the start command.";
     };
+    startScript = mkOption {
+      type = types.str;
+      description = "Script to start ZITADEL with.";
+      default = ''
+          ${cfg.package}/bin/zitadel start-from-init --config ${configFile} --steps ${configFile} ${cfg.extraCommand}
+      '';
+    };
   };
   
-
   config = mkIf cfg.enable {
-    systemd.services.zitadel = { # FIXME: does not wait for DB
-      description = "Starts Zitadel.";
+    systemd.services.zitadel = {       
+      description = "Starts ZITADEL.";
       wantedBy = ["multi-user.target"];
-      serviceConfig.ExecStart = ''
-        ${cfg.package}/bin/zitadel start-from-init --config ${configFile} --steps ${configFile} ${cfg.extraCommand}
-      '';
-      path = [ pkgs.coreutils ];
+      serviceConfig.ExecStart = cfg.startScript;
     };
   };
 }
