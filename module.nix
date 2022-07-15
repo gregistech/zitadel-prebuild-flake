@@ -44,7 +44,6 @@ in {
       description = "Starts Zitadel.";
       wantedBy = ["multi-user.target"];
       serviceConfig.ExecStart = ''
-        sleep 30
         ${cfg.package}/bin/zitadel start-from-init --config ${configFile} --steps ${configFile} ${cfg.extraCommand}
       '';
       path = [ pkgs.coreutils ];
