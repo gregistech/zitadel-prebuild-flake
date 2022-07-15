@@ -43,10 +43,11 @@ in {
     systemd.services.zitadel = { # FIXME: does not wait for DB
       description = "Starts Zitadel.";
       wantedBy = ["multi-user.target"];
-      serviceConfig.ExecStartPre = "sleep 30";
       serviceConfig.ExecStart = ''
+        sleep 30
         ${cfg.package}/bin/zitadel start-from-init --config ${configFile} --steps ${configFile} ${cfg.extraCommand}
       '';
+      path = [ pkgs.coreutils ];
     };
   };
 }
