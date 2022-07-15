@@ -26,6 +26,11 @@ in {
       default = "";
       description = "Configuration to append to the config file.";
     };
+    extraConfigFile = mkOption {
+      type = types.path;
+      default = ${cfg.configFile};
+      description = "Extra configuration file.";
+    };
     extraCommand = mkOption {
       type = types.str;
       default = "";
@@ -38,6 +43,7 @@ in {
     systemd.services.zitadel = { # FIXME: does not wait for DB
       description = "Starts Zitadel.";
       wantedBy = ["multi-user.target"];
+      serviceConfig.ExecStartPre = "sleep 30";
       serviceConfig.ExecStart = ''
         ${cfg.package}/bin/zitadel start-from-init --config ${configFile} --steps ${configFile} ${cfg.extraCommand}
       '';
